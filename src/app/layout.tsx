@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter,Barlow } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
 
 const interFont = Inter({ subsets: ["latin"] });
 const barlowFont = Barlow({ subsets: ["latin"], weight: ['500','700'], variable: '--font-barlow' });
@@ -17,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${interFont.className} ${barlowFont.variable}`}>{children}</body>
+      <body className={`${interFont.className} ${barlowFont.variable}`}>
+          {children}
+      </body>
     </html>
   );
 }
