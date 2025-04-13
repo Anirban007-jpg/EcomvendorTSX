@@ -1,10 +1,18 @@
 import type { Metadata } from "next";
-import { Inter,Barlow } from "next/font/google";
+import { Inter, Barlow } from "next/font/google";
 import "./globals.css";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
 import { ThemeProvider } from "next-themes";
 
 const interFont = Inter({ subsets: ["latin"] });
-const barlowFont = Barlow({ subsets: ["latin"], weight: ['500','700'], variable: '--font-barlow' });
+const barlowFont = Barlow({ subsets: ["latin"], weight: ['500', '700'], variable: '--font-barlow' });
 
 export const metadata: Metadata = {
   title: "GoShop",
@@ -17,10 +25,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${interFont.className} ${barlowFont.variable}`}>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={`${interFont.className} ${barlowFont.variable}`}>
           {children}
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
